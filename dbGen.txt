@@ -1,0 +1,127 @@
+-- ---
+-- Globals
+-- ---
+
+-- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+-- SET FOREIGN_KEY_CHECKS=0;
+
+-- ---
+-- Table 'OCRB'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `OCRB`;
+		
+CREATE TABLE `OCRB` (
+  `CardCode` INTEGER NOT NULL DEFAULT NULL,
+  `Country` VARCHAR(3) NULL DEFAULT NULL,
+  `BankCode` INTEGER(3) NULL DEFAULT NULL,
+  `Branch` INTEGER NULL DEFAULT NULL,
+  `UsrNumber1` INTEGER NULL DEFAULT NULL,
+  `Account` INTEGER NULL DEFAULT NULL,
+  `UsrNumber` INTEGER NULL DEFAULT NULL,
+  `AcctName` VARCHAR NULL DEFAULT NULL,
+  PRIMARY KEY (`CardCode`)
+);
+
+-- ---
+-- Table 'OCRD'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `OCRD`;
+		
+CREATE TABLE `OCRD` (
+  `CardCode` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `CardName` VARCHAR NULL DEFAULT NULL,
+  `CardFName` VARCHAR NULL DEFAULT NULL,
+  `CardType` CHAR(1) NOT NULL DEFAULT 'NULL',
+  `GroupCode` INTEGER(3) NOT NULL DEFAULT 101,
+  `Phone1` INTEGER(9) NULL DEFAULT NULL,
+  `Phone2` INTEGER(8) NULL DEFAULT NULL,
+  `Celular` INTEGER NULL DEFAULT NULL,
+  `Notes` INTEGER NULL DEFAULT NULL,
+  `SlpCode` INTEGER NULL DEFAULT NULL,
+  `E_Mail` MEDIUMTEXT NULL DEFAULT NULL,
+  `ShipType` INTEGER NULL DEFAULT NULL,
+  `IntrntSite` MEDIUMTEXT NULL DEFAULT NULL,
+  `CmpPrivate` MEDIUMTEXT NOT NULL DEFAULT 'NULL',
+  PRIMARY KEY (`CardCode`)
+);
+
+-- ---
+-- Table 'CRD7'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `CRD7`;
+		
+CREATE TABLE `CRD7` (
+  `CardCode` INTEGER NOT NULL DEFAULT NULL,
+  `LineNum` INTEGER(1) NULL DEFAULT NULL,
+  `Address` VARCHAR NULL DEFAULT NULL,
+  `TaxId0` VARCHAR(18) NULL DEFAULT NULL,
+  `TaxId1` VARCHAR NULL DEFAULT NULL,
+  `TaxId2` VARCHAR NULL DEFAULT NULL,
+  `TaxId3` VARCHAR NULL DEFAULT NULL,
+  `TaxId4` VARCHAR NULL DEFAULT NULL,
+  `TaxId5` VARCHAR NULL DEFAULT NULL,
+  `TaxId6` VARCHAR NULL DEFAULT NULL,
+  `TaxId7` VARCHAR NULL DEFAULT NULL,
+  `TaxId8` VARCHAR NULL DEFAULT NULL,
+  PRIMARY KEY (`CardCode`)
+);
+
+-- ---
+-- Table 'CRD1'
+-- 
+-- ---
+
+DROP TABLE IF EXISTS `CRD1`;
+		
+CREATE TABLE `CRD1` (
+  `CardCode` INTEGER NOT NULL DEFAULT NULL,
+  `AdresType` VARCHAR NULL DEFAULT NULL,
+  `Address` INTEGER NULL DEFAULT NULL,
+  `AddrType` VARCHAR NULL DEFAULT NULL,
+  `Street` VARCHAR NULL DEFAULT NULL,
+  `StreeNo` VARCHAR NULL DEFAULT NULL,
+  `Block` VARCHAR NULL DEFAULT NULL,
+  `City` VARCHAR NULL DEFAULT NULL,
+  `Country` INTEGER NULL DEFAULT NULL,
+  `State` VARCHAR(2) NULL DEFAULT NULL,
+  `ZipCode` VARCHAR(9) NULL DEFAULT NULL,
+  `Country` VARCHAR(3) NULL DEFAULT NULL,
+  `Building` VARCHAR NULL DEFAULT NULL,
+  PRIMARY KEY (`CardCode`)
+);
+
+-- ---
+-- Foreign Keys 
+-- ---
+
+ALTER TABLE `OCRB` ADD FOREIGN KEY (CardCode) REFERENCES `OCRD` (`CardCode`);
+ALTER TABLE `CRD7` ADD FOREIGN KEY (CardCode) REFERENCES `OCRD` (`CardCode`);
+ALTER TABLE `CRD1` ADD FOREIGN KEY (CardCode) REFERENCES `OCRD` (`CardCode`);
+
+-- ---
+-- Table Properties
+-- ---
+
+-- ALTER TABLE `OCRB` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `OCRD` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `CRD7` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+-- ALTER TABLE `CRD1` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ---
+-- Test Data
+-- ---
+
+-- INSERT INTO `OCRB` (`CardCode`,`Country`,`BankCode`,`Branch`,`UsrNumber1`,`Account`,`UsrNumber`,`AcctName`) VALUES
+-- ('','','','','','','','');
+-- INSERT INTO `OCRD` (`CardCode`,`CardName`,`CardFName`,`CardType`,`GroupCode`,`Phone1`,`Phone2`,`Celular`,`Notes`,`SlpCode`,`E_Mail`,`ShipType`,`IntrntSite`,`CmpPrivate`) VALUES
+-- ('','','','','','','','','','','','','','');
+-- INSERT INTO `CRD7` (`CardCode`,`LineNum`,`Address`,`TaxId0`,`TaxId1`,`TaxId2`,`TaxId3`,`TaxId4`,`TaxId5`,`TaxId6`,`TaxId7`,`TaxId8`) VALUES
+-- ('','','','','','','','','','','','');
+-- INSERT INTO `CRD1` (`CardCode`,`AdresType`,`Address`,`AddrType`,`Street`,`StreeNo`,`Block`,`City`,`Country`,`State`,`ZipCode`,`Country`,`Building`) VALUES
+-- ('','','','','','','','','','','','','');
